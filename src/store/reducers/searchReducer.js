@@ -1,12 +1,13 @@
 import * as actionTypes from "../actions/actionsTypes";
 
 const initialState = {
+  query: "",
   movies: null,
   totalResults: null,
   loading: false,
   error: null,
   page: null,
-  pageNow: null
+  pageNow: 1
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -23,6 +24,12 @@ const searchReducer = (state = initialState, action) => {
         totalResults: action.totalResults,
         page
       };
+    case actionTypes.SEARCH_QUERY_FAIL:
+      return { ...state, loading: false, error: action.error };
+    case actionTypes.SET_QUERY:
+      return { ...state, query: action.query };
+    case actionTypes.SET_CURRENT_PAGE:
+      return { ...state, pageNow: action.pageNow };
     default:
       return state;
   }

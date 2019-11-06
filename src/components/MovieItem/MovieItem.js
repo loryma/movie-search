@@ -8,13 +8,15 @@ const MovieContainer = styled.div`
   align-items: center;
   max-width: 400px;
   width: 100%;
+  padding-bottom: 2em;
 `;
 
 const Poster = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url(${props => (props.url ? props.url : defaultImage)});
+  background-image: url(${props =>
+    props.url ? props.url : "./default-movie.png"});
   padding-top: 100%;
   width: 70%;
 `;
@@ -34,7 +36,8 @@ const MovieItem = ({ posterUrl, title, year }) => {
   return (
     <MovieContainer>
       <Title>{title}</Title>
-      <Poster url={posterUrl} />({year})
+      <Poster url={posterUrl} />
+      <Year>{year}</Year>
     </MovieContainer>
   );
 };

@@ -20,10 +20,11 @@ const Button = styled.button`
   height: 2em;
 `;
 
-const Search = ({ fetchQuery }) => {
+const Search = ({ fetchQuery, assignQuery }) => {
   const [query, setQuery] = useState("");
   const onInput = event => {
     setQuery(event.target.value);
+    assignQuery(event.target.value);
   };
   const onSubmit = e => {
     e.preventDefault();
@@ -41,7 +42,8 @@ const Search = ({ fetchQuery }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchQuery: query => dispatch(actions.searchQuery(query))
+  fetchQuery: query => dispatch(actions.searchQuery(query)),
+  assignQuery: query => dispatch(actions.setQuery(query))
 });
 
 export default connect(

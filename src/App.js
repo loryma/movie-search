@@ -11,6 +11,8 @@ const AppContainer = styled.div`
   width: 90%;
   margin: 0 auto;
   max-width: 1200px;
+  padding-bottom: 1em;
+  overflow: hidden;
 `;
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

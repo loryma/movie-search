@@ -12,17 +12,27 @@ const searchQueryFail = error => ({
   error
 });
 
-export const searchQuery = query => {
+export const setCurrentPage = pageNow => ({
+  type: actionTypes.SET_CURRENT_PAGE,
+  pageNow
+});
+
+export const searchQuery = (query, page) => {
+  const params = page ? `s=${query}&page=${page}` : `s=${query}`;
+  console.log(params);
   return dispatch => {
     dispatch(searchQueryStart());
     axios
-      .get(`http://www.omdbapi.com/?&s=${query}&apikey=936510a8`)
+      .get(`http://www.omdbapi.com/?&${params}&apikey=936510a8`)
       .then(res => {
         console.log(res.data);
         if (res.data.Response) {
           dispatch(
             searchQuerySuccess(res.data["Search"], res.data["totalResults"])
           );
+          if (page) {
+            dispatch(setCurrentPage(page));
+          }
         } else {
           dispatch(searchQueryFail({ message: res.data.Error }));
         }
