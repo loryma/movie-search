@@ -74,3 +74,9 @@ html {
   min-height: 100vh;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

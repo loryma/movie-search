@@ -6,7 +6,22 @@ import styled from "styled-components";
 const PaginationContainer = styled.div`
   display: flex;
   width: 100%;
-  oveflow-x: scroll;
+  overflow-x: auto;
+  margin-top: auto;
+  padding-bottom: 0.8em;
+
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
 `;
 
 const PageLink = styled.span`
@@ -16,7 +31,7 @@ const PageLink = styled.span`
   padding: 0.5em;
   color: violet;
   margin-right: 0.3em;
-  background-color: ${props => (props.activePage ? "green;" : "white;")};
+  background-color: ${props => (props.activePage ? "#D3D3D3" : "white")};
 `;
 
 const Pagination = ({ pageNumber, getPage, query, pageNow }) => {
@@ -39,9 +54,9 @@ const Pagination = ({ pageNumber, getPage, query, pageNow }) => {
 };
 
 const mapStateToProps = state => ({
-  pageNumber: state.page,
-  query: state.query,
-  pageNow: state.pageNow
+  pageNumber: state.search.page,
+  query: state.search.query,
+  pageNow: state.search.pageNow
 });
 const mapDispatchToProps = dispatch => ({
   getPage: (query, page) => dispatch(actions.searchQuery(query, page))

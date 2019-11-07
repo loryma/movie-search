@@ -6,3 +6,7 @@ export const SET_QUERY = "SET_QUERY";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 
 export const SET_INITIAL_STATE = "SET_INITIAL_STATE";
+
+export const GET_MOVIE_START = "GET_MOVIE_START";
+export const GET_MOVIE_SUCCESS = "GET_MOVIE_SUCCESS";
+export const GET_MOVIE_FAIL = "GET_MOVIE_FAIL";

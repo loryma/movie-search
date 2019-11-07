@@ -15,5 +15,5 @@ const InitialMessage = ({ initial }) => {
   return <> {initialContent} </>;
 };
 
-const mapStateToProps = ({ initial }) => ({ initial });
+const mapStateToProps = ({ search: { initial } }) => ({ initial });
 export default connect(mapStateToProps)(InitialMessage);

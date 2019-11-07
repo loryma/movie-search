@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
@@ -6,7 +6,7 @@ import Input from "../Input/Input";
 
 const Form = styled.form`
   width: 100%;
-  margin: 2em auto;
+  margin: 0 auto 3em auto;
   display: flex;
   @media (min-width: 780px) {
     width: 50%;
