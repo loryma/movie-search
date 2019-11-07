@@ -22,13 +22,15 @@ const Poster = styled.div`
 
 const Title = styled.h3`
   font-weight: bold;
-  font-size: 1.1em;
+  font-size: 1em;
   padding-bottom: 1em;
+  text-align: center;
 `;
 
 const Year = styled.p`
   font-weight: bold;
-  margin-top: 0.8em;
+  margin-top: 1em;
+  font-size: 0.8em;
 `;
 
 const MovieItem = ({ posterUrl, title, year }) => {
