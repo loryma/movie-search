@@ -1,5 +1,7 @@
 ## SPA built with React that allows to seach IMDB database
 
+Appkication is deployed here https://search-movie-react.netlify.com/
+
 Search input allows to searche movies by title and returns paginated result (10 movies per page).
 Clicking on a movie opens a page with details about the movie.
 
