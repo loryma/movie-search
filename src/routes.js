@@ -7,5 +7,6 @@ export const routes = (
     <Route to="/">
       <Home />
     </Route>
+    <Route to="/movies/:id"></Route>
   </Switch>
 );

@@ -7,7 +7,8 @@ const initialState = {
   loading: false,
   error: null,
   page: null,
-  pageNow: 1
+  pageNow: 1,
+  initial: true
 };
 
 const searchReducer = (state = initialState, action) => {
@@ -30,6 +31,8 @@ const searchReducer = (state = initialState, action) => {
       return { ...state, query: action.query };
     case actionTypes.SET_CURRENT_PAGE:
       return { ...state, pageNow: action.pageNow };
+    case actionTypes.SET_INITIAL_STATE:
+      return { ...state, initial: false };
     default:
       return state;
   }

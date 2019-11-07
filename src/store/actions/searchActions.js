@@ -17,11 +17,17 @@ export const setCurrentPage = pageNow => ({
   pageNow
 });
 
+export const setInitialState = () => ({ type: actionTypes.SET_INITIAL_STATE });
+
 export const searchQuery = (query, page) => {
   const params = page ? `s=${query}&page=${page}` : `s=${query}`;
   console.log(params);
-  return dispatch => {
+  return (dispatch, state) => {
     dispatch(searchQueryStart());
+    // check if first search request and hide favorite movies message shown on initial load
+    if (state.initial) {
+      dispatch(setInitialState());
+    }
     axios
       .get(`http://www.omdbapi.com/?&${params}&apikey=936510a8`)
       .then(res => {
@@ -30,9 +36,28 @@ export const searchQuery = (query, page) => {
           dispatch(
             searchQuerySuccess(res.data["Search"], res.data["totalResults"])
           );
+
           if (page) {
             dispatch(setCurrentPage(page));
           }
+        } else {
+          dispatch(searchQueryFail({ message: res.data.Error }));
+        }
+      })
+      .catch(error => dispatch(searchQueryFail(error)));
+  };
+};
+
+export const fetchInitialMovies = query => {
+  const params = `s=${query}`;
+  console.log(params);
+  return dispatch => {
+    dispatch(searchQueryStart());
+    axios
+      .get(`http://www.omdbapi.com/?&${params}&apikey=936510a8`)
+      .then(res => {
+        if (res.data.Response) {
+          dispatch(searchQuerySuccess(res.data["Search"].slice(0, 4), null));
         } else {
           dispatch(searchQueryFail({ message: res.data.Error }));
         }

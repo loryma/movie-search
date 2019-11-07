@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MovieItem from "../MovieItem/MovieItem";
 import styled from "styled-components";
 import { connect } from "react-redux";
+import * as actions from "../../store/actions";
 import Spinner from "../Spinner/Spinner";
 
 const Grid = styled.div`
@@ -18,24 +19,44 @@ const Grid = styled.div`
   }
 `;
 
-const MovieList = ({ movies, loading }) => {
+const MovieList = ({ movies, loading, initial, fetchInitialMovies }) => {
   let movieContent = null;
+
+  useEffect(() => {
+    if (initial) {
+      fetchInitialMovies("man");
+    }
+  }, [initial]);
 
   if (loading) {
     movieContent = <Spinner />;
   } else if (movies) {
-    movieContent = movies.map(movie => (
-      <MovieItem
-        posterUrl={movie.Poster}
-        title={movie.Title}
-        year={movie.Year}
-        imbdId={movie.imbdID}
-      />
-    ));
+    movieContent = (
+      <Grid>
+        {movies.map(movie => (
+          <MovieItem
+            posterUrl={movie.Poster}
+            title={movie.Title}
+            year={movie.Year}
+            imbdId={movie.imbdID}
+          />
+        ))}
+      </Grid>
+    );
   }
-  return <Grid>{movieContent}</Grid>;
+  return <> {movieContent} </>;
 };
 
-const mapStateToProps = ({ movies, loading }) => ({ movies, loading });
+const mapStateToProps = ({ movies, loading, initial }) => ({
+  movies,
+  loading,
+  initial
+});
+const mapDispatchToProps = dispatch => ({
+  fetchInitialMovies: query => dispatch(actions.fetchInitialMovies(query))
+});
 
-export default connect(mapStateToProps)(MovieList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MovieList);

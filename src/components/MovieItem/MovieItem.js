@@ -15,8 +15,7 @@ const Poster = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url(${props =>
-    props.url ? props.url : "./default-movie.png"});
+  background-image: url(${props => (props.url ? props.url : defaultImage)});
   padding-top: 100%;
   width: 70%;
 `;
@@ -37,7 +36,7 @@ const MovieItem = ({ posterUrl, title, year }) => {
     <MovieContainer>
       <Title>{title}</Title>
       <Poster url={posterUrl} />
-      <Year>{year}</Year>
+      <Year>({year})</Year>
     </MovieContainer>
   );
 };

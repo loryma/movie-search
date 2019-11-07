@@ -24,7 +24,7 @@ const Pagination = ({ pageNumber, getPage, query, pageNow }) => {
     getPage(query, page);
   };
   let pages = null;
-  if (pageNumber) {
+  if (pageNumber > 1) {
     pages = [...Array(pageNumber)].map((_, index) => (
       <PageLink
         activePage={pageNow === index + 1}
