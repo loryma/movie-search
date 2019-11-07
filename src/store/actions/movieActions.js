@@ -16,7 +16,7 @@ export const getMovie = id => {
     const params = `i=${id}&plot=full`;
     dispatch(getMovieStart());
     axios
-      .get(`http://www.omdbapi.com/?&${params}&apikey=936510a8`)
+      .get(`https://www.omdbapi.com/?&${params}&apikey=936510a8`)
       .then(res => {
         console.log("movie", res.data);
         if (res.data.Response === "True") {

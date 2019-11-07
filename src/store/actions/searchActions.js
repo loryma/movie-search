@@ -28,7 +28,7 @@ export const searchQuery = (query, page) => {
       dispatch(setInitialState());
     }
     axios
-      .get(`http://www.omdbapi.com/?&${params}&apikey=936510a8`)
+      .get(`https://www.omdbapi.com/?&${params}&apikey=936510a8`)
       .then(res => {
         if (res.data.Response === "True") {
           dispatch(
@@ -51,7 +51,7 @@ export const fetchInitialMovies = query => {
   return dispatch => {
     dispatch(searchQueryStart());
     axios
-      .get(`http://www.omdbapi.com/?&${params}&apikey=936510a8`)
+      .get(`https://www.omdbapi.com/?&${params}&apikey=936510a8`)
       .then(res => {
         if (res.data.Response === "True") {
           dispatch(searchQuerySuccess(res.data["Search"].slice(0, 4), null));
