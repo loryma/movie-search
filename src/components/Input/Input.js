@@ -9,8 +9,15 @@ const InputText = styled.input`
   padding-left: 0.5em;
 `;
 
-const Input = ({ query, onQueryInputHandler }) => (
-  <InputText value={query} onChange={onQueryInputHandler} />
+const Input = ({ query, onQueryInputHandler, onFocus, onBlur }) => (
+  <InputText
+    type="text"
+    value={query}
+    placeholder="man"
+    onChange={onQueryInputHandler}
+    onFocus={onFocus}
+    onBlur={onBlur}
+  />
 );
 
 export default Input;

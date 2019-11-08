@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import Input from "../Input/Input";
 import Suggestion from "../Suggestion/Suggestion";
 
-const FormWrapper = styled.form`
+const FormWrapper = styled.div`
   margin: 0 auto 3em auto;
+  position: relative;
   @media (min-width: 780px) {
     width: 50%;
   }
@@ -24,10 +25,15 @@ const Button = styled.button`
   height: 2em;
 `;
 
-const Search = ({ initialQuery, fetchQuery, assignQuery }) => {
-  const [query, setQuery] = useState(initialQuery);
+const Search = ({
+  query,
+  fetchQuery,
+  assignQuery,
+  showSuggestion,
+  hideSuggestion
+}) => {
   const onInput = event => {
-    setQuery(event.target.value);
+    showSuggestion();
     assignQuery(event.target.value);
   };
   const onSubmit = e => {
@@ -35,12 +41,17 @@ const Search = ({ initialQuery, fetchQuery, assignQuery }) => {
     const value = query.trim();
     if (value) {
       fetchQuery(value);
+      hideSuggestion();
     }
   };
   return (
-    <FormWrapper>
+    <FormWrapper onMouseLeave={hideSuggestion} onMouseEnter={showSuggestion}>
       <Form onSubmit={onSubmit}>
-        <Input value={query} onQueryInputHandler={onInput} />
+        <Input
+          value={query}
+          onFocus={showSuggestion}
+          onQueryInputHandler={onInput}
+        />
         <Button>Search</Button>
       </Form>
       <Suggestion />
@@ -48,11 +59,13 @@ const Search = ({ initialQuery, fetchQuery, assignQuery }) => {
   );
 };
 
-const mapStateToProps = ({ search: { query } }) => ({ initialQuery: query });
+const mapStateToProps = ({ search: { query } }) => ({ query });
 
 const mapDispatchToProps = dispatch => ({
   fetchQuery: query => dispatch(actions.searchQuery(query)),
-  assignQuery: query => dispatch(actions.setQuery(query))
+  assignQuery: query => dispatch(actions.setQuery(query)),
+  showSuggestion: () => dispatch(actions.showSuggestion()),
+  hideSuggestion: () => dispatch(actions.hideSuggestion())
 });
 
 export default connect(

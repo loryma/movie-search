@@ -44,6 +44,7 @@ const MovieList = ({
       <Grid>
         {movies.map(movie => (
           <MovieItem
+            key={movie.imdbID}
             posterUrl={movie.Poster}
             title={movie.Title}
             year={movie.Year}

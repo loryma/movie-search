@@ -5,4 +5,9 @@ export {
   setQuery
 } from "./searchActions";
 export { getMovie } from "./movieActions";
-export { getSuggestion } from "./suggestionActions";
+export {
+  getSuggestion,
+  showSuggestion,
+  hideSuggestion,
+  clearSuggestion
+} from "./suggestionActions";

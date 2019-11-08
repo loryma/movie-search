@@ -11,6 +11,10 @@ const getSuggestionFail = error => ({
   error
 });
 
+export const hideSuggestion = () => ({ type: actionTypes.HIDE_SUGGESTION });
+export const showSuggestion = () => ({ type: actionTypes.SHOW_SUGGESTION });
+export const clearSuggestion = () => ({ type: actionTypes.CLEAR_SUGGESTION });
+
 export const getSuggestion = query => {
   const params = `s=${query}`;
   return dispatch => {
