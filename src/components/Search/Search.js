@@ -20,8 +20,8 @@ const Button = styled.button`
   height: 2em;
 `;
 
-const Search = ({ fetchQuery, assignQuery }) => {
-  const [query, setQuery] = useState("");
+const Search = ({ initialQuery, fetchQuery, assignQuery }) => {
+  const [query, setQuery] = useState(initialQuery);
   const onInput = event => {
     setQuery(event.target.value);
     assignQuery(event.target.value);
@@ -41,12 +41,14 @@ const Search = ({ fetchQuery, assignQuery }) => {
   );
 };
 
+const mapStateToProps = ({ search: { query } }) => ({ initialQuery: query });
+
 const mapDispatchToProps = dispatch => ({
   fetchQuery: query => dispatch(actions.searchQuery(query)),
   assignQuery: query => dispatch(actions.setQuery(query))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Search);

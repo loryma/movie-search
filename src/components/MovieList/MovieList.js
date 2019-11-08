@@ -19,12 +19,19 @@ const Grid = styled.div`
   }
 `;
 
-const MovieList = ({ movies, loading, error, initial, fetchInitialMovies }) => {
+const MovieList = ({
+  movies,
+  loading,
+  error,
+  initial,
+  initialQuery,
+  fetchInitialMovies
+}) => {
   let movieContent = null;
 
   useEffect(() => {
-    if (initial && !movies) {
-      fetchInitialMovies("man");
+    if (initial && initialQuery && !movies) {
+      fetchInitialMovies(initialQuery);
     }
   }, [initial]);
 
@@ -49,11 +56,14 @@ const MovieList = ({ movies, loading, error, initial, fetchInitialMovies }) => {
   return <> {movieContent} </>;
 };
 
-const mapStateToProps = ({ search: { movies, loading, initial, error } }) => ({
+const mapStateToProps = ({
+  search: { movies, loading, initial, error, query }
+}) => ({
   movies,
   loading,
   initial,
-  error
+  error,
+  initialQuery: query
 });
 const mapDispatchToProps = dispatch => ({
   fetchInitialMovies: query => dispatch(actions.fetchInitialMovies(query))

@@ -30,7 +30,7 @@ function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Logo>Hooked</Logo>
+        <Logo>Movies</Logo>
         <AppContainer>{routes}</AppContainer>
       </BrowserRouter>
     </Provider>

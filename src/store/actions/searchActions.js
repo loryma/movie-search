@@ -1,6 +1,8 @@
 import axios from "axios";
 import * as actionTypes from "./actionsTypes";
 
+export const setQuery = query => ({ type: actionTypes.SET_QUERY, query });
+
 const searchQueryStart = () => ({ type: actionTypes.SEARCH_QUERY_START });
 const searchQuerySuccess = (movies, totalResults) => ({
   type: actionTypes.SEARCH_QUERY_SUCCESS,
@@ -50,6 +52,7 @@ export const fetchInitialMovies = query => {
   const params = `s=${query}`;
   return dispatch => {
     dispatch(searchQueryStart());
+    dispatch(setQuery(query));
     axios
       .get(`https://www.omdbapi.com/?&${params}&apikey=936510a8`)
       .then(res => {

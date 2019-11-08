@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/actionsTypes";
 
 const initialState = {
-  query: "",
+  query: "man",
   movies: null,
   totalResults: null,
   loading: false,

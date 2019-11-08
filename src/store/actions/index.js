@@ -1,7 +1,7 @@
 export {
   searchQuery,
   setInitialState,
-  fetchInitialMovies
+  fetchInitialMovies,
+  setQuery
 } from "./searchActions";
-export { setQuery } from "./queryActions";
 export { getMovie } from "./movieActions";
