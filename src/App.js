@@ -4,7 +4,8 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { BrowserRouter } from "react-router-dom";
 import searchReducer from "./store/reducers/searchReducer";
-import moveReducer from "./store/reducers/movieReducer";
+import movieReducer from "./store/reducers/movieReducer";
+import suggestionReducer from "./store/reducers/suggestionReducer";
 import { routes } from "./routes";
 import Logo from "./components/Logo/Logo";
 import styled from "styled-components";
@@ -22,7 +23,11 @@ const AppContainer = styled.div`
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-  combineReducers({ search: searchReducer, movie: moveReducer }),
+  combineReducers({
+    search: searchReducer,
+    movie: movieReducer,
+    suggestions: suggestionReducer
+  }),
   composeEnhancers(applyMiddleware(thunk))
 );
 

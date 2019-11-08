@@ -3,14 +3,18 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 import * as actions from "../../store/actions";
 import Input from "../Input/Input";
+import Suggestion from "../Suggestion/Suggestion";
 
-const Form = styled.form`
-  width: 100%;
+const FormWrapper = styled.form`
   margin: 0 auto 3em auto;
-  display: flex;
   @media (min-width: 780px) {
     width: 50%;
   }
+`;
+
+const Form = styled.form`
+  width: 100%;
+  display: flex;
 `;
 
 const Button = styled.button`
@@ -34,10 +38,13 @@ const Search = ({ initialQuery, fetchQuery, assignQuery }) => {
     }
   };
   return (
-    <Form onSubmit={onSubmit}>
-      <Input value={query} onQueryInputHandler={onInput} />
-      <Button>Search</Button>
-    </Form>
+    <FormWrapper>
+      <Form onSubmit={onSubmit}>
+        <Input value={query} onQueryInputHandler={onInput} />
+        <Button>Search</Button>
+      </Form>
+      <Suggestion />
+    </FormWrapper>
   );
 };
 
