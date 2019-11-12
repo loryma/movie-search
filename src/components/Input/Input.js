@@ -13,7 +13,7 @@ const Input = ({ value, onQueryInputHandler, onFocus, onBlur }) => (
   <InputText
     type="text"
     value={value}
-    placeholder="movie..."
+    placeholder="movie"
     onChange={onQueryInputHandler}
     onFocus={onFocus}
     onBlur={onBlur}
