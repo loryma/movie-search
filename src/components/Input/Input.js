@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const InputText = styled.input`
@@ -9,11 +9,11 @@ const InputText = styled.input`
   padding-left: 0.5em;
 `;
 
-const Input = ({ query, onQueryInputHandler, onFocus, onBlur }) => (
+const Input = ({ value, onQueryInputHandler, onFocus, onBlur }) => (
   <InputText
     type="text"
-    value={query}
-    placeholder="man"
+    value={value}
+    placeholder="movie..."
     onChange={onQueryInputHandler}
     onFocus={onFocus}
     onBlur={onBlur}
